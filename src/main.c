@@ -1,21 +1,22 @@
 #include <stdio.h>
 #include <SDL.h>
+#include "board.h"
+#include "constants.h"
 
-#define SCREEN_WIDTH 600
-#define SCREEN_HEIGHT 800
 
-int main(void) {
+int main(void)
+{
+    SDL_Window* window = NULL;
+    SDL_Renderer* renderer = NULL;
 
-    SDL_Window *window = NULL;
-    SDL_Renderer *renderer = NULL;
-
-    if (SDL_Init(SDL_INIT_VIDEO) )
+    if (SDL_Init(SDL_INIT_VIDEO))
     {
         printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
         return 1;
     }
 
-    window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+    window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
+                              SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if (!window)
     {
         printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -31,15 +32,22 @@ int main(void) {
     int running = 1;
     SDL_Event event;
 
-    while (running) {
-        while (SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT) {
+    Board board;
+    board_init(&board);
+
+    while (running)
+    {
+        while (SDL_PollEvent(&event))
+        {
+            if (event.type == SDL_QUIT)
+            {
                 running = 0;
             }
         }
 
         SDL_SetRenderDrawColor(renderer, 20, 20, 30, 255);
         SDL_RenderClear(renderer);
+        board_render(&board, renderer);
         SDL_RenderPresent(renderer);
     }
 
