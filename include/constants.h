@@ -1,8 +1,10 @@
-const int SCREEN_WIDTH;
-const int SCREEN_HEIGHT;
+#define TITLE "TetriC"
 
-const int BOARD_WIDTH;
-const int BOARD_HEIGHT;
-const int CELL_SIZE;
+#define SCREEN_WIDTH  600
+#define SCREEN_HEIGHT 800
+
+#define BOARD_WIDTH  10
+#define BOARD_HEIGHT 20
+#define CELL_SIZE    30
 
 
