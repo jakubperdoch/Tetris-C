@@ -1,0 +1,3 @@
+/Volumes/Squirtle/Developer/Tetris/build/CMakeFiles/tetris.dir
+/Volumes/Squirtle/Developer/Tetris/build/CMakeFiles/edit_cache.dir
+/Volumes/Squirtle/Developer/Tetris/build/CMakeFiles/rebuild_cache.dir
