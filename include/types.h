@@ -1,6 +1,9 @@
+#ifndef TYPES_H
+#define TYPES_H
 
 #include <stdbool.h>
 #include <SDL.h>
+#include "shapes.h"
 
 typedef struct
 {
@@ -13,18 +16,13 @@ typedef struct
     Board_Cell cells[20][10];
 } Board;
 
-typedef enum
-{
-    PIECE_I, PIECE_O, PIECE_T,
-    PIECE_S, PIECE_Z, PIECE_J, PIECE_L,
-    PIECE_COUNT
-} PieceType;
-
 typedef struct
 {
-    PieceType type;
+    ShapeType type;
     int x;
     int y;
     int rotation;
+    SDL_Color color;
 } Shape;
 
+#endif

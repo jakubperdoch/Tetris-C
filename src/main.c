@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <SDL.h>
+#include <time.h>
 #include "board.h"
+#include "render.h"
 #include "constants.h"
 
 
@@ -8,6 +10,7 @@ int main(void)
 {
     SDL_Window* window = NULL;
     SDL_Renderer* renderer = NULL;
+    srand(time(NULL));
 
     if (SDL_Init(SDL_INIT_VIDEO))
     {
@@ -35,6 +38,14 @@ int main(void)
     Board board;
     board_init(&board);
 
+    Shape shape = {
+        .type = PIECE_L,
+        .y = 0,
+        .x = rand() % (BOARD_WIDTH - 3),
+        .rotation = 0,
+        .color = {255, 255, 255, 255}
+    };
+
     while (running)
     {
         while (SDL_PollEvent(&event))
@@ -48,6 +59,7 @@ int main(void)
         SDL_SetRenderDrawColor(renderer, 20, 20, 30, 255);
         SDL_RenderClear(renderer);
         board_render(&board, renderer);
+        render_shape(renderer, shape);
         SDL_RenderPresent(renderer);
     }
 

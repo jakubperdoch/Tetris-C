@@ -8,7 +8,9 @@ void board_init(Board* board)
         for (int col = 0; col < BOARD_WIDTH; col++)
         {
             {
+                SDL_Color color = {0, 0, 255};
                 board->cells[row][col].occupied = false;
+                board->cells[row][col].color = color;
             }
         }
 }
@@ -19,12 +21,9 @@ void board_render(Board* board, SDL_Renderer* renderer)
     {
         for (int col = 0; col < BOARD_WIDTH; col++)
         {
-            const int offset_x = (SCREEN_WIDTH - BOARD_WIDTH * CELL_SIZE) / 2;
-            const int offset_y = (SCREEN_HEIGHT - BOARD_HEIGHT * CELL_SIZE) / 2;
-
             SDL_Rect cell = {
-                offset_x + col * CELL_SIZE,
-                offset_y + row * CELL_SIZE,
+                SCREEN_OFFSET_X + col * CELL_SIZE,
+                SCREEN_OFFSET_Y + row * CELL_SIZE,
                 CELL_SIZE,
                 CELL_SIZE
             };

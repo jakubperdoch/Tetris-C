@@ -11,7 +11,8 @@ find_package(SDL2_mixer REQUIRED)
 
 file(GLOB SOURCES "src/*.c")
 
-add_executable(${PROJECT_NAME} ${SOURCES})
+add_executable(${PROJECT_NAME} ${SOURCES}
+        include/shapes.h)
 
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/include
