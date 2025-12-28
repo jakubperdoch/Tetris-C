@@ -4,6 +4,7 @@
 #include "board.h"
 #include "render.h"
 #include "constants.h"
+#include "input.h"
 
 
 int main(void)
@@ -38,13 +39,7 @@ int main(void)
     Board board;
     board_init(&board);
 
-    Shape shape = {
-        .type = PIECE_L,
-        .y = 0,
-        .x = rand() % (BOARD_WIDTH - 3),
-        .rotation = 0,
-        .color = {255, 255, 255, 255}
-    };
+    Shape shape = generate_random_shape();
 
     while (running)
     {
@@ -53,6 +48,10 @@ int main(void)
             if (event.type == SDL_QUIT)
             {
                 running = 0;
+            }
+            else if (event.type == SDL_KEYDOWN)
+            {
+                handle_input(&shape, &event);
             }
         }
 

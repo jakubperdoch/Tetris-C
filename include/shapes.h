@@ -1,12 +1,6 @@
 #ifndef SHAPES_H
 #define SHAPES_H
 
-typedef enum
-{
-    PIECE_I, PIECE_O, PIECE_T,
-    PIECE_S, PIECE_Z, PIECE_J, PIECE_L,
-} ShapeType;
-
 static const int SHAPES[7][2][4] = {
     // I
     {{0, 0, 0, 0}, {1, 1, 1, 1}},

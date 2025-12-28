@@ -5,6 +5,34 @@
 #include <SDL.h>
 #include "shapes.h"
 
+// ENUMS
+typedef enum
+{
+    PIECE_I, PIECE_O, PIECE_T,
+    PIECE_S, PIECE_Z, PIECE_J, PIECE_L,
+    PIECE_COUNT
+} ShapeType;
+
+static const SDL_Color SHAPE_COLORS[7] = {
+    {0, 255, 255, 255},
+    {255, 255, 0, 255},
+    {128, 0, 128, 255},
+    {0, 255, 0, 255},
+    {255, 0, 0, 255},
+    {0, 0, 255, 255},
+    {255, 165, 0, 255}
+};
+
+typedef enum
+{
+    LEFT, RIGHT, DOWN,
+    DROP,
+    ROTATE_LEFT, ROTATE_RIGHT,
+    QUIT = 0,
+}
+Controls;
+
+// TYPES
 typedef struct
 {
     bool occupied;
@@ -24,5 +52,6 @@ typedef struct
     int rotation;
     SDL_Color color;
 } Shape;
+
 
 #endif

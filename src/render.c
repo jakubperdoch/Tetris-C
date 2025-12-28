@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "render.h"
+#include "types.h"
 #include "shapes.h"
 #include "constants.h"
 
@@ -26,4 +27,18 @@ void render_shape(SDL_Renderer* renderer, Shape shape)
   }
  }
 }
+
+Shape generate_random_shape()
+{
+ ShapeType type = rand() % PIECE_COUNT;
+
+ return (Shape){
+  .type = type,
+  .rotation = rand() % 4,
+  .color = SHAPE_COLORS[type],
+  .x = rand() % (BOARD_WIDTH - 3),
+  .y = 0
+ };
+}
+
 
