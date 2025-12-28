@@ -74,7 +74,7 @@ int main(void)
                 shape.y--;
                 lock_in_shape(&shape, &board);
 
-                int cleared = clear_lines(&board);
+                const int cleared = clear_lines(&board);
                 score += cleared * 100;
 
                 shape = next_shape;

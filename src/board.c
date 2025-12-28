@@ -15,7 +15,7 @@ void board_init(Board* board)
         }
 }
 
-void board_render(Board* board, SDL_Renderer* renderer)
+void board_render(const Board* board, SDL_Renderer* renderer)
 {
     for (int row = 0; row < BOARD_HEIGHT; row++)
     {
@@ -30,7 +30,7 @@ void board_render(Board* board, SDL_Renderer* renderer)
 
             if (board->cells[row][col].occupied)
             {
-                SDL_Color color = board->cells[row][col].color;
+                const SDL_Color color = board->cells[row][col].color;
                 SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
             }
             else
@@ -45,7 +45,7 @@ void board_render(Board* board, SDL_Renderer* renderer)
     }
 }
 
-bool board_cell_is_occupied(Board* board, int row, int col)
+bool board_cell_is_occupied(const Board* board, const int row, const int col)
 {
     if (row < 0 || row >= BOARD_HEIGHT || col < 0 || col >= BOARD_WIDTH)
     {
@@ -60,7 +60,7 @@ void board_set_cell(Board* board, int row, int col, SDL_Color color)
     board->cells[row][col].color = color;
 }
 
-bool check_for_collision(Shape* shape, Board* board)
+bool check_for_collision(const Shape* shape, const Board* board)
 {
     for (int row = 0; row < 4; row++)
     {
@@ -83,7 +83,7 @@ bool check_for_collision(Shape* shape, Board* board)
     return false;
 }
 
-void lock_in_shape(Shape* shape, Board* board)
+void lock_in_shape(const Shape* shape, Board* board)
 {
     for (int row = 0; row < 4; row++)
     {
