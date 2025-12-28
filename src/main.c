@@ -5,6 +5,7 @@
 #include "render.h"
 #include "constants.h"
 #include "input.h"
+#include "audio.h"
 
 int score = 0;
 
@@ -24,6 +25,11 @@ int main(void)
     {
         printf("Failed to initialize fonts!\n");
         return 1;
+    }
+
+    if (init_audio() != 0)
+    {
+        printf("Failed to initialize audio!\n");
     }
 
     Uint32 last_fall = SDL_GetTicks();
@@ -75,6 +81,7 @@ int main(void)
                 lock_in_shape(&shape, &board);
 
                 const int cleared = clear_lines(&board);
+                if (cleared > 0) play_line_clear();
                 score += cleared * 100;
 
                 shape = next_shape;
@@ -82,6 +89,8 @@ int main(void)
 
                 if (check_for_collision(&shape, &board))
                 {
+                    play_gameover();
+                    SDL_Delay(2000);
                     running = 0;
                 }
             }
@@ -100,6 +109,7 @@ int main(void)
     TTF_CloseFont(Font_secondary);
     TTF_CloseFont(Font_primary);
     TTF_Quit();
+    cleanup_audio();
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();

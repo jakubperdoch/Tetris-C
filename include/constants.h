@@ -16,4 +16,8 @@
 #define FONT_PRIMARY_SIZE 20
 #define FONT_SECONDARY_SIZE 10
 
+#define MUSIC_PATH "assets/audio/tetris.mp3"
+#define GAMEOVER_PATH "assets/audio/gameover.mp3"
+#define LINE_CLEAR_SOUND_PATH "assets/audio/line_clear.mp3"
+
 
