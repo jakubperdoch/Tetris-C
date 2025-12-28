@@ -60,3 +60,24 @@ void board_set_cell(Board* board, int row, int col, SDL_Color color)
     board->cells[row][col].color = color;
 }
 
+bool check_for_collision(Shape* shape, Board* board)
+{
+    for (int row = 0; row < 2; row++)
+    {
+        for (int col = 0; col < 4; col++)
+        {
+            if (SHAPES[shape->type][row][col])
+            {
+                const int board_x = shape->x + col;
+                const int board_y = shape->y + row;
+
+                if (board_x < 0 || board_x >= BOARD_WIDTH ||
+                    board_y >= BOARD_HEIGHT || board_cell_is_occupied(board, row, col))
+                {
+                    return true;
+                }
+            }
+        }
+    }
+}
+

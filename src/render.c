@@ -1,4 +1,3 @@
-#include <stdlib.h>
 #include "render.h"
 #include "types.h"
 #include "shapes.h"

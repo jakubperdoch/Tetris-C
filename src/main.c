@@ -51,7 +51,7 @@ int main(void)
             }
             else if (event.type == SDL_KEYDOWN)
             {
-                handle_input(&shape, &event);
+                handle_input(&shape, &board, &event);
             }
         }
 
