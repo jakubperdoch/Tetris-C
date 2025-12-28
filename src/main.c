@@ -6,6 +6,7 @@
 #include "constants.h"
 #include "input.h"
 
+int score = 0;
 
 int main(void)
 {
@@ -16,6 +17,12 @@ int main(void)
     if (SDL_Init(SDL_INIT_VIDEO))
     {
         printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+        return 1;
+    }
+
+    if (init_font() != 0)
+    {
+        printf("Failed to initialize fonts!\n");
         return 1;
     }
 
@@ -77,10 +84,14 @@ int main(void)
         SDL_SetRenderDrawColor(renderer, 20, 20, 30, 255);
         SDL_RenderClear(renderer);
         board_render(&board, renderer);
+        render_ui(renderer, score);
         render_shape(renderer, shape);
         SDL_RenderPresent(renderer);
     }
 
+    TTF_CloseFont(Font_secondary);
+    TTF_CloseFont(Font_primary);
+    TTF_Quit();
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
