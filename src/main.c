@@ -48,6 +48,8 @@ int main(void)
     board_init(&board);
 
     Shape shape = generate_random_shape();
+    Shape next_shape = generate_random_shape();
+
 
     while (running)
     {
@@ -75,7 +77,8 @@ int main(void)
                 int cleared = clear_lines(&board);
                 score += cleared * 100;
 
-                shape = generate_random_shape();
+                shape = next_shape;
+                next_shape = generate_random_shape();
 
                 if (check_for_collision(&shape, &board))
                 {
@@ -90,6 +93,7 @@ int main(void)
         board_render(&board, renderer);
         render_ui(renderer, score);
         render_shape(renderer, shape);
+        render_next_shape(renderer, next_shape);
         SDL_RenderPresent(renderer);
     }
 

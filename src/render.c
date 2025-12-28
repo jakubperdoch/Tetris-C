@@ -92,4 +92,33 @@ void render_ui(SDL_Renderer* renderer, int score)
  render_text(renderer, Font_secondary, score_text, SCREEN_WIDTH / 2 - 35, 60, white);
 }
 
+void render_next_shape(SDL_Renderer* renderer, Shape next_shape)
+{
+ const int preview_x = SCREEN_OFFSET_X + BOARD_WIDTH * CELL_SIZE;
+ int preview_y = 50;
+
+ for (int row = 0; row < 4; row++)
+ {
+  for (int col = 0; col < 4; col++)
+  {
+   if (SHAPES[next_shape.type][next_shape.rotation][row][col])
+   {
+    SDL_Rect piece = {
+     preview_x + col * CELL_SIZE,
+     preview_y + row * CELL_SIZE,
+     CELL_SIZE,
+     CELL_SIZE
+    };
+
+    SDL_SetRenderDrawColor(renderer, next_shape.color.r, next_shape.color.g, next_shape.color.b, next_shape.color.a);
+    SDL_RenderFillRect(renderer, &piece);
+    SDL_SetRenderDrawColor(renderer, 20, 20, 30, 255);
+    SDL_RenderDrawRect(renderer, &piece);
+   }
+  }
+ }
+}
+
+
+
 
