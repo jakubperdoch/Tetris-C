@@ -72,10 +72,26 @@ bool check_for_collision(Shape* shape, Board* board)
                 const int board_y = shape->y + row;
 
                 if (board_x < 0 || board_x >= BOARD_WIDTH ||
-                    board_y >= BOARD_HEIGHT || board_cell_is_occupied(board, row, col))
+                    board_y >= BOARD_HEIGHT ||
+                    board_cell_is_occupied(board, board_y, board_x))
                 {
                     return true;
                 }
+            }
+        }
+    }
+    return false;
+}
+
+void lock_in_shape(Shape* shape, Board* board)
+{
+    for (int row = 0; row < 2; row++)
+    {
+        for (int col = 0; col < 4; col++)
+        {
+            if (SHAPES[shape->type][row][col])
+            {
+                board_set_cell(board, shape->y + row, shape->x + col, shape->color);
             }
         }
     }

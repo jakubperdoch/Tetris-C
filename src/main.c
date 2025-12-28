@@ -19,6 +19,7 @@ int main(void)
         return 1;
     }
 
+    Uint32 last_fall = SDL_GetTicks();
     window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
                               SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if (!window)
@@ -53,6 +54,24 @@ int main(void)
             {
                 handle_input(&shape, &board, &event);
             }
+        }
+
+        Uint32 now = SDL_GetTicks();
+        if (now - last_fall >= FALL_DELAY)
+        {
+            shape.y++;
+            if (check_for_collision(&shape, &board))
+            {
+                shape.y--;
+                lock_in_shape(&shape, &board);
+                shape = generate_random_shape();
+
+                if (check_for_collision(&shape, &board))
+                {
+                    running = 0;
+                }
+            }
+            last_fall = now;
         }
 
         SDL_SetRenderDrawColor(renderer, 20, 20, 30, 255);
