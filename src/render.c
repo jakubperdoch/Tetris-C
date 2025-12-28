@@ -10,11 +10,11 @@ TTF_Font* Font_secondary = NULL;
 
 void render_shape(SDL_Renderer* renderer, Shape shape)
 {
- for (int row = 0; row < 2; row++)
+ for (int row = 0; row < 4; row++)
  {
   for (int col = 0; col < 4; col++)
   {
-   if (SHAPES[shape.type][row][col])
+   if (SHAPES[shape.type][shape.rotation][row][col])
    {
     SDL_Rect shape_piece = {
      SCREEN_OFFSET_X + (shape.x + col) * CELL_SIZE,

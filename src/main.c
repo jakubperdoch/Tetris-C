@@ -71,6 +71,10 @@ int main(void)
             {
                 shape.y--;
                 lock_in_shape(&shape, &board);
+
+                int cleared = clear_lines(&board);
+                score += cleared * 100;
+
                 shape = generate_random_shape();
 
                 if (check_for_collision(&shape, &board))

@@ -27,10 +27,14 @@ void handle_input(Shape* shape, Board* board, const SDL_Event* event)
         // hard drop
         break;
     case SDLK_z:
-        // rotate left
+        shape->rotation = (shape->rotation + 3) % 4;
+        if (check_for_collision(shape, board))
+            shape->rotation = (shape->rotation + 1) % 4;
         break;
     case SDLK_x:
-        // rotate right
+        shape->rotation = (shape->rotation + 1) % 4;
+        if (check_for_collision(shape, board))
+            shape->rotation = (shape->rotation + 3) % 4;
         break;
     case SDLK_ESCAPE:
         break;
