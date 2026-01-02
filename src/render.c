@@ -32,9 +32,10 @@ void render_shape(SDL_Renderer* renderer, Shape shape)
  }
 }
 
-Shape generate_random_shape()
+Shape generate_random_shape(ShapeType shape_type)
 {
  const ShapeType type = rand() % PIECE_COUNT;
+ if (type == shape_type) return generate_random_shape(shape_type);
 
  return (Shape){
   .type = type,

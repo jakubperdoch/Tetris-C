@@ -55,8 +55,8 @@ int main(void)
     Board board;
     board_init(&board);
 
-    Shape shape = generate_random_shape();
-    Shape next_shape = generate_random_shape();
+    Shape shape = generate_random_shape(PIECE_COUNT);
+    Shape next_shape = generate_random_shape(shape.type);
 
 
     while (running)
@@ -88,7 +88,7 @@ int main(void)
                 score += cleared * 100;
 
                 shape = next_shape;
-                next_shape = generate_random_shape();
+                next_shape = generate_random_shape(shape.type);
 
                 if (check_for_collision(&shape, &board))
                 {
