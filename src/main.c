@@ -8,6 +8,7 @@
 #include "audio.h"
 
 int score = 0;
+int lines_cleared = 0;
 
 int main(void)
 {
@@ -27,10 +28,10 @@ int main(void)
         return 1;
     }
 
-    if (init_audio() != 0)
-    {
-        printf("Failed to initialize audio!\n");
-    }
+    // if (init_audio() != 0)
+    // {
+    //     printf("Failed to initialize audio!\n");
+    // }
 
     Uint32 last_fall = SDL_GetTicks();
     window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
@@ -82,6 +83,7 @@ int main(void)
 
                 const int cleared = clear_lines(&board);
                 if (cleared > 0) play_line_clear();
+                lines_cleared += cleared;
                 score += cleared * 100;
 
                 shape = next_shape;
@@ -100,7 +102,7 @@ int main(void)
         SDL_SetRenderDrawColor(renderer, 20, 20, 30, 255);
         SDL_RenderClear(renderer);
         board_render(&board, renderer);
-        render_ui(renderer, score);
+        render_ui(renderer, score, lines_cleared);
         render_shape(renderer, shape);
         render_next_shape(renderer, next_shape);
         SDL_RenderPresent(renderer);

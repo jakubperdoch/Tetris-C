@@ -82,20 +82,27 @@ void render_text(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x
  SDL_DestroyTexture(texture);
 }
 
-void render_ui(SDL_Renderer* renderer, int score)
+void render_ui(SDL_Renderer* renderer, int score, int lines_cleared)
 {
  SDL_Color white = {255, 255, 255, 255};
  char score_text[32];
+ char lines_cleared_text[32];
  sprintf(score_text, "Score: %d", score);
+ sprintf(lines_cleared_text, "Lines cleared: %d", lines_cleared);
 
  render_text(renderer, Font_primary, "TetriC", SCREEN_WIDTH / 2 - 60, 20, white);
- render_text(renderer, Font_secondary, score_text, SCREEN_WIDTH / 2 - 35, 60, white);
+ render_text(renderer, Font_secondary, lines_cleared_text, SCREEN_WIDTH / 2 - 100, 80, white);
+ render_text(renderer, Font_secondary, score_text, SCREEN_WIDTH / 2 - 35, 110, white);
 }
 
 void render_next_shape(SDL_Renderer* renderer, Shape next_shape)
 {
- const int preview_x = SCREEN_OFFSET_X + BOARD_WIDTH * CELL_SIZE;
- int preview_y = 50;
+ int preview_x = SCREEN_WIDTH - (4 * CELL_SIZE) - 40;
+ int preview_y = SCREEN_OFFSET_Y;
+ SDL_Color white = {255, 255, 255, 255};
+ render_text(renderer, Font_secondary, "Next:", preview_x, preview_y, white);
+
+ preview_y += 30;
 
  for (int row = 0; row < 4; row++)
  {

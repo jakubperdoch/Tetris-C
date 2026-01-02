@@ -43,6 +43,10 @@ void board_render(const Board* board, SDL_Renderer* renderer)
             SDL_RenderDrawRect(renderer, &cell);
         }
     }
+
+    SDL_Rect rect = {SCREEN_OFFSET_X, SCREEN_OFFSET_Y, BOARD_WIDTH * CELL_SIZE, BOARD_HEIGHT * CELL_SIZE};
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    SDL_RenderDrawRect(renderer, &rect);
 }
 
 bool board_cell_is_occupied(const Board* board, const int row, const int col)

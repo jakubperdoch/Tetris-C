@@ -14,6 +14,7 @@ int init_audio()
         SDL_LogError(0, "Mixer init failed: %s\n", Mix_GetError());
         return -1;
     }
+
     soundtrack = Mix_LoadMUS(MUSIC_PATH);
     gameover_sound = Mix_LoadWAV(GAMEOVER_PATH);
     line_clear_sound = Mix_LoadWAV(LINE_CLEAR_SOUND_PATH);
