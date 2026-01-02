@@ -9,7 +9,7 @@
 #define BOARD_HEIGHT 20
 #define CELL_SIZE    30
 
-#define FALL_DELAY 300
+#define FALL_DELAY 400
 #define FALL_SPEED_MULTIPLIER 1.1
 
 #define FONT_PRIMARY_PATH "assets/fonts/tetris_font.ttf"

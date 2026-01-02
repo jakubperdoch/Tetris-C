@@ -6,5 +6,7 @@ bool board_cell_is_occupied(const Board* board, int row, int col);
 void board_set_cell(Board* board, int row, int col, SDL_Color color);
 bool check_for_collision(const Shape* shape, const Board* board);
 
+void background_render(SDL_Renderer* renderer);
+
 void lock_in_shape(const Shape* shape, Board* board);
 int clear_lines(Board* board);

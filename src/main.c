@@ -101,6 +101,7 @@ int main(void)
 
         SDL_SetRenderDrawColor(renderer, 20, 20, 30, 255);
         SDL_RenderClear(renderer);
+        background_render(renderer);
         board_render(&board, renderer);
         render_ui(renderer, score, lines_cleared);
         render_shape(renderer, shape);

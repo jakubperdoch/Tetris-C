@@ -87,6 +87,19 @@ bool check_for_collision(const Shape* shape, const Board* board)
     return false;
 }
 
+void background_render(SDL_Renderer* renderer)
+{
+    SDL_SetRenderDrawColor(renderer, 25, 25, 35, 255);
+    for (int x = 0; x < SCREEN_WIDTH; x += 20)
+    {
+        SDL_RenderDrawLine(renderer, x, 0, x, SCREEN_HEIGHT);
+    }
+    for (int y = 0; y < SCREEN_HEIGHT; y += 20)
+    {
+        SDL_RenderDrawLine(renderer, 0, y, SCREEN_WIDTH, y);
+    }
+}
+
 void lock_in_shape(const Shape* shape, Board* board)
 {
     for (int row = 0; row < 4; row++)
