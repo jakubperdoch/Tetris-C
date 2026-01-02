@@ -3,6 +3,7 @@
 #include <time.h>
 #include "board.h"
 #include "render.h"
+#include "game.h"
 #include "constants.h"
 #include "input.h"
 #include "audio.h"
@@ -73,7 +74,7 @@ int main(void)
         }
 
         Uint32 now = SDL_GetTicks();
-        if (now - last_fall >= FALL_DELAY)
+        if (now - last_fall >= delay_calcular(lines_cleared))
         {
             shape.y++;
             if (check_for_collision(&shape, &board))

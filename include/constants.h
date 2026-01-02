@@ -10,7 +10,8 @@
 #define CELL_SIZE    30
 
 #define FALL_DELAY 400
-#define FALL_SPEED_MULTIPLIER 1.1
+#define MIN_DELAY 100
+#define FALL_SPEED_MULTIPLIER 50
 
 #define FONT_PRIMARY_PATH "assets/fonts/tetris_font.ttf"
 #define FONT_PRIMARY_SIZE 20

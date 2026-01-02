@@ -1,2 +1,1 @@
-#include "types.h"
-
+int delay_calcular(int lines_cleared);
