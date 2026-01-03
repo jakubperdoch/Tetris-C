@@ -70,7 +70,7 @@ void game_loop(Game* game)
             }
             else if (event.type == SDL_KEYDOWN)
             {
-                handle_input(&shape, &game->board, &event);
+                handle_input(&shape, &game->board, &event, &game->current_screen);
             }
         }
 

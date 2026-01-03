@@ -4,7 +4,7 @@
 #include "SDL.h"
 
 
-void handle_input(Shape* shape, Board* board, const SDL_Event* event)
+void handle_input(Shape* shape, Board* board, const SDL_Event* event, GameScreen* screen)
 {
     switch (event->key.keysym.sym)
     {
@@ -41,7 +41,7 @@ void handle_input(Shape* shape, Board* board, const SDL_Event* event)
             shape->rotation = (shape->rotation + 3) % 4;
         break;
     case SDLK_ESCAPE:
-
+        *screen = SCREEN_MENU;
         break;
     }
 }
