@@ -10,6 +10,7 @@ void menu_loop(Game* game)
     const char* options[] = {"Play", "Settings", "Quit"};
     int option_count = 3;
 
+    load_scoreboard(&game->scoreboard);
     while (game->running && game->current_screen == SCREEN_MENU)
     {
         while (SDL_PollEvent(&event))
