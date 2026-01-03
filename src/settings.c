@@ -100,13 +100,13 @@ void settings_loop(Game* game)
 
         char difficulty_text[64];
         sprintf(difficulty_text, "< Difficulty: %s >", difficulties[game->settings.difficulty]);
-        SDL_Color color0 = (selected == 0) ? white : gray;
-        render_text(game->renderer, Font_secondary, difficulty_text, SCREEN_WIDTH / 2 - 100, 280, color0);
+        SDL_Color difficulty_color = (selected == 0) ? white : gray;
+        render_text(game->renderer, Font_secondary, difficulty_text, SCREEN_WIDTH / 2 - 100, 280, difficulty_color);
 
         char music_text[64];
         sprintf(music_text, "< Music: %s >", on_off[game->settings.music]);
-        SDL_Color color1 = (selected == 1) ? white : gray;
-        render_text(game->renderer, Font_secondary, music_text, SCREEN_WIDTH / 2 - 100, 330, color1);
+        SDL_Color music_color = (selected == 1) ? white : gray;
+        render_text(game->renderer, Font_secondary, music_text, SCREEN_WIDTH / 2 - 100, 330, music_color);
 
         render_text(game->renderer, Font_secondary, "Press ESC to go back", SCREEN_WIDTH / 2 - 80, 480, gray);
 
