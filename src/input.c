@@ -1,6 +1,7 @@
 #include "input.h"
 #include "types.h"
 #include "board.h"
+#include "constants.h"
 #include "SDL.h"
 
 
@@ -24,6 +25,9 @@ void handle_input(Shape* shape, Board* board, const SDL_Event* event)
             shape->y--;
         break;
     case SDLK_SPACE:
+        shape->y++;
+
+
         break;
     case SDLK_z:
         shape->rotation = (shape->rotation + 3) % 4;
@@ -39,6 +43,8 @@ void handle_input(Shape* shape, Board* board, const SDL_Event* event)
         break;
     }
 }
+
+
 
 
 

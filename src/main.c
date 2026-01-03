@@ -7,6 +7,7 @@
 int main(void)
 {
     srand(time(NULL));
+    int running = 1;
 
 
     Game game = game_init();

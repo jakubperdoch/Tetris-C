@@ -5,7 +5,7 @@
 
 TTF_Font* Font_primary = NULL;
 TTF_Font* Font_secondary = NULL;
-
+GameScreen current_screen = SCREEN_MENU;
 
 int init_font()
 {
