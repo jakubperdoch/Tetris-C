@@ -42,19 +42,21 @@ Game game_init()
     }
 
     board_init(&game.board);
+    game.current_screen = SCREEN_MENU;
 
     return game;
 }
 
 void game_loop(Game* game)
 {
-    SDL_Event event;
     Shape shape = generate_random_shape(PIECE_COUNT);
     Shape next_shape = generate_random_shape(shape.type);
+    SDL_Event event;
+
 
     Uint32 last_fall = SDL_GetTicks();
 
-    while (game->running)
+    while (game->running && game->current_screen == SCREEN_GAME)
     {
         while (SDL_PollEvent(&event))
         {

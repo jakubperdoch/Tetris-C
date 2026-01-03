@@ -5,6 +5,7 @@
 #include "render.h"
 
 void handle_input(Shape* shape, Board* board, const SDL_Event* event);
+void handle_menu_input(SDL_Event* event, GameScreen* screen);
 
 #endif
 

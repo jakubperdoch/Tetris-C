@@ -2,17 +2,30 @@
 #include <SDL.h>
 #include <time.h>
 #include "game.h"
-
+#include "menu.h"
 
 int main(void)
 {
     srand(time(NULL));
-    int running = 1;
-
 
     Game game = game_init();
-    game_loop(&game);
-    game_clear(game.renderer, game.window);
 
+    while (game.running)
+    {
+        switch (game.current_screen)
+        {
+        case SCREEN_MENU:
+            menu_loop(&game);
+            break;
+        case SCREEN_GAME:
+            game_loop(&game);
+            break;
+        case SCREEN_GAME_OVER:
+            // gameover_loop(&game);
+            break;
+        }
+    }
+
+    game_clear(game.renderer, game.window);
     return 0;
 }

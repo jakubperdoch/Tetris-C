@@ -22,6 +22,14 @@ static const SDL_Color SHAPE_COLORS[7] = {
     {255, 165, 0, 255}
 };
 
+typedef enum
+{
+    SCREEN_MENU,
+    SCREEN_GAME,
+    SCREEN_SETTINGS,
+    SCREEN_GAME_OVER
+} GameScreen;
+
 // TYPES
 typedef struct
 {
@@ -43,5 +51,15 @@ typedef struct
     SDL_Color color;
 } Shape;
 
+typedef struct
+{
+    SDL_Window* window;
+    SDL_Renderer* renderer;
+    GameScreen current_screen;
+    Board board;
+    int running;
+    int lines_cleared;
+    int score;
+} Game;
 
 #endif
