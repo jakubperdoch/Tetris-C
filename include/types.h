@@ -59,14 +59,24 @@ typedef struct
 
 typedef struct
 {
+    int scores[5];
+    int count;
+}
+
+Scoreboard;
+
+typedef struct
+{
     SDL_Window* window;
     SDL_Renderer* renderer;
     GameScreen current_screen;
     Board board;
     Settings settings;
+    Scoreboard scoreboard;
     int running;
     int lines_cleared;
     int score;
 } Game;
+
 
 #endif

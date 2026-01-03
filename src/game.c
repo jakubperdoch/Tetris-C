@@ -14,9 +14,6 @@ Game game_init()
     game.running = 1;
     game.current_screen = SCREEN_MENU;
 
-    game.settings.difficulty = 1;
-    game.settings.music = 0;
-
     if (SDL_Init(SDL_INIT_VIDEO))
     {
         printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
@@ -27,10 +24,10 @@ Game game_init()
         printf("Failed to initialize fonts!\n");
     }
 
-    if (game.settings.music && init_audio() != 0)
-    {
-        printf("Failed to initialize audio!\n");
-    }
+    // if (init_audio() != 0)
+    // {
+    //     printf("Failed to initialize audio!\n");
+    // }
 
     game.window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
                                    SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
@@ -45,8 +42,8 @@ Game game_init()
         printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
     }
 
+    load_scoreboard(&game.scoreboard);
     board_init(&game.board);
-    game.current_screen = SCREEN_MENU;
 
     return game;
 }
@@ -70,7 +67,7 @@ void game_loop(Game* game)
             }
             else if (event.type == SDL_KEYDOWN)
             {
-                handle_input(&shape, &game->board, &event, &game->current_screen);
+                handle_input(&shape, &game->board, &event, game);
             }
         }
 
@@ -94,8 +91,10 @@ void game_loop(Game* game)
                 if (check_for_collision(&shape, &game->board))
                 {
                     play_gameover();
+                    update_scoreboard(&game->scoreboard, game->score);
                     SDL_Delay(2000);
-                    game->running = 0;
+                    game_reset(game);
+                    game->current_screen = SCREEN_MENU;
                 }
             }
             last_fall = now;
@@ -110,6 +109,13 @@ void game_loop(Game* game)
         render_next_shape(game->renderer, next_shape);
         SDL_RenderPresent(game->renderer);
     }
+}
+
+void game_reset(Game* game)
+{
+    game->score = 0;
+    game->lines_cleared = 0;
+    board_init(&game->board);
 }
 
 void game_clear(SDL_Renderer* renderer, SDL_Window* window)
@@ -140,4 +146,74 @@ int delay_calcular(Game* game)
 
     int delay = base_delay - (game->lines_cleared / 5) * FALL_SPEED_MULTIPLIER;
     return delay > MIN_DELAY ? delay : MIN_DELAY;
+}
+
+void load_scoreboard(Scoreboard* scoreboard)
+{
+    FILE* file = fopen("scoreboard.txt", "r");
+
+    if (!file)
+    {
+        printf("Failed to open scoreboard file!\n");
+        for (int i = 0; i < 5; i++)
+        {
+            scoreboard->scores[i] = 0;
+        }
+        save_scoreboard(scoreboard);
+        return;
+    }
+
+    char buffer[255] = {};
+    for (int record = 0; record < 5; record++)
+    {
+        if (fgets(buffer, sizeof(buffer), file))
+        {
+            scoreboard->scores[record] = atoi(buffer);
+            scoreboard->count++;
+        }
+        else
+        {
+            scoreboard->scores[record] = 0;
+            break;
+        }
+    }
+
+    fclose(file);
+}
+
+void save_scoreboard(const Scoreboard* scoreboard)
+{
+    FILE* file = fopen("scoreboard.txt", "w");
+    if (file)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            fprintf(file, "%d\n", scoreboard->scores[i]);
+        }
+
+        fclose(file);
+    }
+}
+
+void update_scoreboard(Scoreboard* scoreboard, int score)
+{
+    int index = -1;
+    for (int i = 0; i < 5; i++)
+    {
+        if (score > scoreboard->scores[i])
+        {
+            index = i;
+            break;
+        }
+    }
+
+    if (index >= 0)
+    {
+        for (int i = 4; i > index; i--)
+        {
+            scoreboard->scores[i] = scoreboard->scores[i - 1];
+        }
+        scoreboard->scores[index] = score;
+        save_scoreboard(scoreboard);
+    }
 }

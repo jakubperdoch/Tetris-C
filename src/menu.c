@@ -56,14 +56,32 @@ void menu_loop(Game* game)
         SDL_Color white = {255, 255, 255, 255};
         SDL_Color gray = {100, 100, 100, 255};
 
-        render_text(game->renderer, Font_primary, "TetriC", SCREEN_WIDTH / 2 - 60, 150, white);
+        render_text(game->renderer, Font_primary, "TetriC", SCREEN_WIDTH / 4, 150, white);
 
         for (int i = 0; i < option_count; i++)
         {
             SDL_Color color = (i == selected) ? white : gray;
             char text[32];
-            sprintf(text, "%s %s", (i == selected) ? ">" : " ", options[i]);
-            render_text(game->renderer, Font_secondary, text, SCREEN_WIDTH / 2 - 50, 220 + i * 50, color);
+            sprintf(text, "%s %s", (i == selected) ? "> " : " ", options[i]);
+            render_text(game->renderer, Font_secondary, text, SCREEN_WIDTH / 4, 220 + i * 50, color);
+        }
+
+        if (game->scoreboard.count > 0 && game->scoreboard.scores[0] > 0)
+        {
+            for (int i = 0; i < game->scoreboard.count; i++)
+            {
+                if (game->scoreboard.scores[i] > 0)
+                {
+                    char text[32];
+                    sprintf(text, "%s %d %d", "Top", i+1, game->scoreboard.scores[i]);
+                    render_text(game->renderer, Font_secondary, text, SCREEN_WIDTH - SCREEN_OFFSET_X, 150 + i * 50,
+                                white);
+                }
+            }
+        }
+        else
+        {
+            render_text(game->renderer, Font_secondary, "No scores yet!", SCREEN_WIDTH - SCREEN_OFFSET_X, 150, white);
         }
 
         SDL_RenderPresent(game->renderer);
