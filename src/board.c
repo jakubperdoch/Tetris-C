@@ -1,6 +1,7 @@
 #include "board.h"
 #include "constants.h"
 #include "SDL.h"
+#include "shapes.h"
 
 void board_init(Board* board)
 {

@@ -7,6 +7,7 @@
 #include "constants.h"
 #include "input.h"
 #include "audio.h"
+#include "shapes.h"
 
 int score = 0;
 int lines_cleared = 0;

@@ -1,6 +1,4 @@
 #include "render.h"
-#include "types.h"
-#include "shapes.h"
 #include "constants.h"
 #include "SDL.h"
 #include "SDL_ttf.h"
@@ -8,43 +6,6 @@
 TTF_Font* Font_primary = NULL;
 TTF_Font* Font_secondary = NULL;
 
-void render_shape(SDL_Renderer* renderer, Shape shape)
-{
- for (int row = 0; row < 4; row++)
- {
-  for (int col = 0; col < 4; col++)
-  {
-   if (SHAPES[shape.type][shape.rotation][row][col])
-   {
-    SDL_Rect shape_piece = {
-     SCREEN_OFFSET_X + (shape.x + col) * CELL_SIZE,
-     SCREEN_OFFSET_Y + (shape.y + row) * CELL_SIZE,
-     CELL_SIZE,
-     CELL_SIZE
-    };
-
-    SDL_SetRenderDrawColor(renderer, shape.color.r, shape.color.g, shape.color.b, shape.color.a);
-    SDL_RenderFillRect(renderer, &shape_piece);
-    SDL_SetRenderDrawColor(renderer, 20, 20, 30, 255);
-    SDL_RenderDrawRect(renderer, &shape_piece);
-   }
-  }
- }
-}
-
-Shape generate_random_shape(ShapeType shape_type)
-{
- const ShapeType type = rand() % PIECE_COUNT;
- if (type == shape_type) return generate_random_shape(shape_type);
-
- return (Shape){
-  .type = type,
-  .rotation = rand() % 4,
-  .color = SHAPE_COLORS[type],
-  .x = rand() % (BOARD_WIDTH - 3),
-  .y = 0
- };
-}
 
 int init_font()
 {
@@ -94,37 +55,6 @@ void render_ui(SDL_Renderer* renderer, int score, int lines_cleared)
  render_text(renderer, Font_primary, "TetriC", SCREEN_WIDTH / 2 - 60, 20, white);
  render_text(renderer, Font_secondary, lines_cleared_text, SCREEN_WIDTH / 2 - 100, 80, white);
  render_text(renderer, Font_secondary, score_text, SCREEN_WIDTH / 2 - 35, 110, white);
-}
-
-void render_next_shape(SDL_Renderer* renderer, Shape next_shape)
-{
- int preview_x = SCREEN_WIDTH - (4 * CELL_SIZE) - 40;
- int preview_y = SCREEN_OFFSET_Y;
- SDL_Color white = {255, 255, 255, 255};
- render_text(renderer, Font_secondary, "Next:", preview_x, preview_y, white);
-
- preview_y += 30;
-
- for (int row = 0; row < 4; row++)
- {
-  for (int col = 0; col < 4; col++)
-  {
-   if (SHAPES[next_shape.type][next_shape.rotation][row][col])
-   {
-    SDL_Rect piece = {
-     preview_x + col * CELL_SIZE,
-     preview_y + row * CELL_SIZE,
-     CELL_SIZE,
-     CELL_SIZE
-    };
-
-    SDL_SetRenderDrawColor(renderer, next_shape.color.r, next_shape.color.g, next_shape.color.b, next_shape.color.a);
-    SDL_RenderFillRect(renderer, &piece);
-    SDL_SetRenderDrawColor(renderer, 20, 20, 30, 255);
-    SDL_RenderDrawRect(renderer, &piece);
-   }
-  }
- }
 }
 
 

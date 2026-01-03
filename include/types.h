@@ -3,7 +3,6 @@
 
 #include <stdbool.h>
 #include <SDL.h>
-#include "shapes.h"
 
 // ENUMS
 typedef enum
@@ -22,15 +21,6 @@ static const SDL_Color SHAPE_COLORS[7] = {
     {0, 0, 255, 255},
     {255, 165, 0, 255}
 };
-
-typedef enum
-{
-    LEFT, RIGHT, DOWN,
-    DROP,
-    ROTATE_LEFT, ROTATE_RIGHT,
-    QUIT = 0,
-}
-Controls;
 
 // TYPES
 typedef struct

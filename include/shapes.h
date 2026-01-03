@@ -1,6 +1,13 @@
 #ifndef SHAPES_H
 #define SHAPES_H
 
+#include "types.h"
+#include "SDL.h"
+
+void render_shape(SDL_Renderer* renderer, Shape shape);
+Shape generate_random_shape(ShapeType shape_type);
+void render_next_shape(SDL_Renderer* renderer, Shape next_shape);
+
 static const int SHAPES[7][4][4][4] = {
         // I
         {
