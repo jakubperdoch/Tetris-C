@@ -53,10 +53,17 @@ typedef struct
 
 typedef struct
 {
+    int difficulty;
+    bool music;
+} Settings;
+
+typedef struct
+{
     SDL_Window* window;
     SDL_Renderer* renderer;
     GameScreen current_screen;
     Board board;
+    Settings settings;
     int running;
     int lines_cleared;
     int score;

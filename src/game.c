@@ -12,6 +12,10 @@ Game game_init()
 {
     Game game = {};
     game.running = 1;
+    game.current_screen = SCREEN_MENU;
+
+    game.settings.difficulty = 1;
+    game.settings.music = 0;
 
     if (SDL_Init(SDL_INIT_VIDEO))
     {
@@ -23,7 +27,7 @@ Game game_init()
         printf("Failed to initialize fonts!\n");
     }
 
-    if (init_audio() != 0)
+    if (game.settings.music && init_audio() != 0)
     {
         printf("Failed to initialize audio!\n");
     }
@@ -71,7 +75,7 @@ void game_loop(Game* game)
         }
 
         Uint32 now = SDL_GetTicks();
-        if (now - last_fall >= delay_calcular(game->lines_cleared))
+        if (now - last_fall >= delay_calcular(game))
         {
             shape.y++;
             if (check_for_collision(&shape, &game->board))
@@ -119,8 +123,21 @@ void game_clear(SDL_Renderer* renderer, SDL_Window* window)
     SDL_Quit();
 }
 
-int delay_calcular(int lines_cleared)
+int delay_calcular(Game* game)
 {
-    int delay = FALL_DELAY - (lines_cleared / 5) * FALL_SPEED_MULTIPLIER;
+    int base_delay;
+
+    switch (game->settings.difficulty)
+    {
+    case 0: base_delay = 500;
+        break;
+    case 1: base_delay = 400;
+        break;
+    case 2: base_delay = 300;
+        break;
+    default: base_delay = 400;
+    }
+
+    int delay = base_delay - (game->lines_cleared / 5) * FALL_SPEED_MULTIPLIER;
     return delay > MIN_DELAY ? delay : MIN_DELAY;
 }

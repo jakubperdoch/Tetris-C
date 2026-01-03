@@ -9,7 +9,6 @@
 #define BOARD_HEIGHT 20
 #define CELL_SIZE    30
 
-#define FALL_DELAY 400
 #define MIN_DELAY 100
 #define FALL_SPEED_MULTIPLIER 50
 
