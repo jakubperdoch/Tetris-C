@@ -13,6 +13,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/tetris.dir/src/menu.c.o.d"
   "CMakeFiles/tetris.dir/src/render.c.o"
   "CMakeFiles/tetris.dir/src/render.c.o.d"
+  "CMakeFiles/tetris.dir/src/settings.c.o"
+  "CMakeFiles/tetris.dir/src/settings.c.o.d"
+  "CMakeFiles/tetris.dir/src/shapes.c.o"
+  "CMakeFiles/tetris.dir/src/shapes.c.o.d"
   "tetris"
   "tetris.pdb"
 )

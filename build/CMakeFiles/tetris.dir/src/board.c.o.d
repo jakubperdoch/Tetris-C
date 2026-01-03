@@ -223,4 +223,5 @@ CMakeFiles/tetris.dir/src/board.c.o: \
   /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2/SDL_version.h \
   /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2/SDL_locale.h \
   /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2/SDL_misc.h \
-  /Volumes/Squirtle/Developer/Tetris/include/constants.h
+  /Volumes/Squirtle/Developer/Tetris/include/constants.h \
+  /Volumes/Squirtle/Developer/Tetris/include/shapes.h

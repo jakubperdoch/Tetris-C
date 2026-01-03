@@ -220,7 +220,7 @@ CMakeFiles/tetris.dir/src/main.c.o: \
   /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2/SDL_version.h \
   /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2/SDL_locale.h \
   /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2/SDL_misc.h \
-  /Volumes/Squirtle/Developer/Tetris/include/board.h \
+  /Volumes/Squirtle/Developer/Tetris/include/game.h \
   /Volumes/Squirtle/Developer/Tetris/include/types.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdbool.h \
-  /Volumes/Squirtle/Developer/Tetris/include/constants.h
+  /Volumes/Squirtle/Developer/Tetris/include/menu.h

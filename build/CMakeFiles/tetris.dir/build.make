@@ -170,6 +170,34 @@ CMakeFiles/tetris.dir/src/render.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tetris.dir/src/render.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Volumes/Squirtle/Developer/Tetris/src/render.c -o CMakeFiles/tetris.dir/src/render.c.s
 
+CMakeFiles/tetris.dir/src/settings.c.o: CMakeFiles/tetris.dir/flags.make
+CMakeFiles/tetris.dir/src/settings.c.o: /Volumes/Squirtle/Developer/Tetris/src/settings.c
+CMakeFiles/tetris.dir/src/settings.c.o: CMakeFiles/tetris.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Volumes/Squirtle/Developer/Tetris/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/tetris.dir/src/settings.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tetris.dir/src/settings.c.o -MF CMakeFiles/tetris.dir/src/settings.c.o.d -o CMakeFiles/tetris.dir/src/settings.c.o -c /Volumes/Squirtle/Developer/Tetris/src/settings.c
+
+CMakeFiles/tetris.dir/src/settings.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/tetris.dir/src/settings.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Volumes/Squirtle/Developer/Tetris/src/settings.c > CMakeFiles/tetris.dir/src/settings.c.i
+
+CMakeFiles/tetris.dir/src/settings.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tetris.dir/src/settings.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Volumes/Squirtle/Developer/Tetris/src/settings.c -o CMakeFiles/tetris.dir/src/settings.c.s
+
+CMakeFiles/tetris.dir/src/shapes.c.o: CMakeFiles/tetris.dir/flags.make
+CMakeFiles/tetris.dir/src/shapes.c.o: /Volumes/Squirtle/Developer/Tetris/src/shapes.c
+CMakeFiles/tetris.dir/src/shapes.c.o: CMakeFiles/tetris.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Volumes/Squirtle/Developer/Tetris/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/tetris.dir/src/shapes.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tetris.dir/src/shapes.c.o -MF CMakeFiles/tetris.dir/src/shapes.c.o.d -o CMakeFiles/tetris.dir/src/shapes.c.o -c /Volumes/Squirtle/Developer/Tetris/src/shapes.c
+
+CMakeFiles/tetris.dir/src/shapes.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/tetris.dir/src/shapes.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Volumes/Squirtle/Developer/Tetris/src/shapes.c > CMakeFiles/tetris.dir/src/shapes.c.i
+
+CMakeFiles/tetris.dir/src/shapes.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tetris.dir/src/shapes.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Volumes/Squirtle/Developer/Tetris/src/shapes.c -o CMakeFiles/tetris.dir/src/shapes.c.s
+
 # Object files for target tetris
 tetris_OBJECTS = \
 "CMakeFiles/tetris.dir/src/audio.c.o" \
@@ -178,7 +206,9 @@ tetris_OBJECTS = \
 "CMakeFiles/tetris.dir/src/input.c.o" \
 "CMakeFiles/tetris.dir/src/main.c.o" \
 "CMakeFiles/tetris.dir/src/menu.c.o" \
-"CMakeFiles/tetris.dir/src/render.c.o"
+"CMakeFiles/tetris.dir/src/render.c.o" \
+"CMakeFiles/tetris.dir/src/settings.c.o" \
+"CMakeFiles/tetris.dir/src/shapes.c.o"
 
 # External object files for target tetris
 tetris_EXTERNAL_OBJECTS =
@@ -190,13 +220,15 @@ tetris: CMakeFiles/tetris.dir/src/input.c.o
 tetris: CMakeFiles/tetris.dir/src/main.c.o
 tetris: CMakeFiles/tetris.dir/src/menu.c.o
 tetris: CMakeFiles/tetris.dir/src/render.c.o
+tetris: CMakeFiles/tetris.dir/src/settings.c.o
+tetris: CMakeFiles/tetris.dir/src/shapes.c.o
 tetris: CMakeFiles/tetris.dir/build.make
 tetris: /opt/homebrew/Cellar/sdl2/2.32.10/lib/libSDL2.dylib
 tetris: /opt/homebrew/Cellar/sdl2_image/2.8.8/lib/libSDL2_image.dylib
 tetris: /opt/homebrew/Cellar/sdl2_ttf/2.24.0/lib/libSDL2_ttf.dylib
 tetris: /opt/homebrew/Cellar/sdl2_mixer/2.8.1_1/lib/libSDL2_mixer.dylib
 tetris: CMakeFiles/tetris.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Volumes/Squirtle/Developer/Tetris/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable tetris"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Volumes/Squirtle/Developer/Tetris/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking C executable tetris"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tetris.dir/link.txt --verbose=$(VERBOSE)
 	/opt/homebrew/bin/cmake -E copy_directory /Volumes/Squirtle/Developer/Tetris/assets /Volumes/Squirtle/Developer/Tetris/build/assets
 

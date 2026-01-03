@@ -15,6 +15,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Volumes/Squirtle/Developer/Tetris/src/main.c" "CMakeFiles/tetris.dir/src/main.c.o" "gcc" "CMakeFiles/tetris.dir/src/main.c.o.d"
   "/Volumes/Squirtle/Developer/Tetris/src/menu.c" "CMakeFiles/tetris.dir/src/menu.c.o" "gcc" "CMakeFiles/tetris.dir/src/menu.c.o.d"
   "/Volumes/Squirtle/Developer/Tetris/src/render.c" "CMakeFiles/tetris.dir/src/render.c.o" "gcc" "CMakeFiles/tetris.dir/src/render.c.o.d"
+  "/Volumes/Squirtle/Developer/Tetris/src/settings.c" "CMakeFiles/tetris.dir/src/settings.c.o" "gcc" "CMakeFiles/tetris.dir/src/settings.c.o.d"
+  "/Volumes/Squirtle/Developer/Tetris/src/shapes.c" "CMakeFiles/tetris.dir/src/shapes.c.o" "gcc" "CMakeFiles/tetris.dir/src/shapes.c.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

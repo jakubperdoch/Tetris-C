@@ -297,6 +297,54 @@ src/render.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/src/render.c.s
 .PHONY : src/render.c.s
 
+src/settings.o: src/settings.c.o
+.PHONY : src/settings.o
+
+# target to build an object file
+src/settings.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/src/settings.c.o
+.PHONY : src/settings.c.o
+
+src/settings.i: src/settings.c.i
+.PHONY : src/settings.i
+
+# target to preprocess a source file
+src/settings.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/src/settings.c.i
+.PHONY : src/settings.c.i
+
+src/settings.s: src/settings.c.s
+.PHONY : src/settings.s
+
+# target to generate assembly for a file
+src/settings.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/src/settings.c.s
+.PHONY : src/settings.c.s
+
+src/shapes.o: src/shapes.c.o
+.PHONY : src/shapes.o
+
+# target to build an object file
+src/shapes.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/src/shapes.c.o
+.PHONY : src/shapes.c.o
+
+src/shapes.i: src/shapes.c.i
+.PHONY : src/shapes.i
+
+# target to preprocess a source file
+src/shapes.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/src/shapes.c.i
+.PHONY : src/shapes.c.i
+
+src/shapes.s: src/shapes.c.s
+.PHONY : src/shapes.s
+
+# target to generate assembly for a file
+src/shapes.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/src/shapes.c.s
+.PHONY : src/shapes.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -327,6 +375,12 @@ help:
 	@echo "... src/render.o"
 	@echo "... src/render.i"
 	@echo "... src/render.s"
+	@echo "... src/settings.o"
+	@echo "... src/settings.i"
+	@echo "... src/settings.s"
+	@echo "... src/shapes.o"
+	@echo "... src/shapes.i"
+	@echo "... src/shapes.s"
 .PHONY : help
 
 
