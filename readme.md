@@ -74,7 +74,6 @@ mingw32-make
 | [SDL2](https://www.libsdl.org/)                  | Grafika a window management    |
 | [SDL2_ttf](https://wiki.libsdl.org/SDL2_ttf)     | Renderovanie fontov            |
 | [SDL2_mixer](https://wiki.libsdl.org/SDL2_mixer) | Audio (hudba + zvukové efekty) |
-| [SDL2_image](https://wiki.libsdl.org/SDL2_image) | Práca s obrázkami              |
 | **CMake**                                        | Build systém                   |
 
 ## 📁 Štruktúra projektu
@@ -122,12 +121,14 @@ Hra sa postupne zrýchľuje — každých 5 vyčistených riadkov sa delay zní�
 
 ### Figúrky
 
-| Figúrka | Farba       |
-|---------|-------------|
-| I       | 🟦 Cyan     |
-| O       | 🟨 Žltá     |
-| T       | 🟪 Fialová  |
-| S       | 🟩 Zelená   |
-| Z       | 🟥 Červená  |
-| J       | 🟦 Modrá    |
-| L       | 🟧 Oranžová |
+| Figúrka | Farba           |
+|---------|-----------------|
+| I       | 🟦 Svetlo Modrá |
+| O       | 🟨 Žltá         |
+| T       | 🟪 Fialová      |
+| S       | 🟩 Zelená       |
+| Z       | 🟥 Červená      |
+| J       | 🟦 Modrá        |
+| L       | 🟧 Oranžová     |
+
+🐱 https://github.com/jakubperdoch/Tetris-C
