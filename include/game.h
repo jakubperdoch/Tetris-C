@@ -14,4 +14,6 @@ void load_scoreboard(Scoreboard* scoreboard);
 void save_scoreboard(const Scoreboard* scoreboard);
 void update_scoreboard(Scoreboard* scoreboard, int score);
 
+void gameover_loop(Game* game);
+
 #endif

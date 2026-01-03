@@ -55,6 +55,9 @@ void menu_loop(Game* game)
 
         SDL_Color white = {255, 255, 255, 255};
         SDL_Color gray = {100, 100, 100, 255};
+        SDL_Color gold = {255, 215, 0, 255};
+        SDL_Color silver = {192, 192, 192, 255};
+        SDL_Color bronze = {205, 127, 50, 255};
 
         render_text(game->renderer, Font_primary, "TetriC", SCREEN_WIDTH / 4, 150, white);
 
@@ -72,10 +75,11 @@ void menu_loop(Game* game)
             {
                 if (game->scoreboard.scores[i] > 0)
                 {
+                    SDL_Color color = (i == 0) ? gold : (i == 1) ? silver : bronze;
                     char text[32];
                     sprintf(text, "%s %d %d", "Top", i+1, game->scoreboard.scores[i]);
                     render_text(game->renderer, Font_secondary, text, SCREEN_WIDTH - SCREEN_OFFSET_X, 150 + i * 50,
-                                white);
+                                color);
                 }
             }
         }
@@ -87,5 +91,4 @@ void menu_loop(Game* game)
         SDL_RenderPresent(game->renderer);
     }
 }
-
 

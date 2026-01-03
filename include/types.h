@@ -54,7 +54,7 @@ typedef struct
 typedef struct
 {
     int difficulty;
-    bool music;
+    int music;
 } Settings;
 
 typedef struct

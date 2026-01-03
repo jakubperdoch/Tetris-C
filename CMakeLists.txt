@@ -13,7 +13,9 @@ file(GLOB SOURCES "src/*.c")
 
 add_executable(${PROJECT_NAME} ${SOURCES}
         include/shapes.h
-        src/shapes.c)
+        src/shapes.c
+        src/settings.c
+        include/settings.h)
 
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/include

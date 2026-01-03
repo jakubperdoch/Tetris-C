@@ -7,12 +7,15 @@
 #include "board.h"
 #include "input.h"
 #include "shapes.h"
+#include "settings.h"
 
 Game game_init()
 {
     Game game = {};
     game.running = 1;
     game.current_screen = SCREEN_MENU;
+
+    load_settings(&game.settings);
 
     if (SDL_Init(SDL_INIT_VIDEO))
     {
@@ -24,10 +27,10 @@ Game game_init()
         printf("Failed to initialize fonts!\n");
     }
 
-    // if (init_audio() != 0)
-    // {
-    //     printf("Failed to initialize audio!\n");
-    // }
+    if (init_audio() != 0)
+    {
+        printf("Failed to initialize audio!\n");
+    }
 
     game.window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
                                    SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
@@ -56,6 +59,11 @@ void game_loop(Game* game)
 
 
     Uint32 last_fall = SDL_GetTicks();
+
+    if (game->settings.music)
+    {
+        play_soundtrack();
+    }
 
     while (game->running && game->current_screen == SCREEN_GAME)
     {
@@ -90,11 +98,11 @@ void game_loop(Game* game)
 
                 if (check_for_collision(&shape, &game->board))
                 {
+                    stop_soundtrack();
                     play_gameover();
                     update_scoreboard(&game->scoreboard, game->score);
                     SDL_Delay(2000);
-                    game_reset(game);
-                    game->current_screen = SCREEN_MENU;
+                    game->current_screen = SCREEN_GAME_OVER;
                 }
             }
             last_fall = now;
@@ -109,6 +117,8 @@ void game_loop(Game* game)
         render_next_shape(game->renderer, next_shape);
         SDL_RenderPresent(game->renderer);
     }
+
+    stop_soundtrack();
 }
 
 void game_reset(Game* game)
@@ -155,7 +165,7 @@ void load_scoreboard(Scoreboard* scoreboard)
     if (!file)
     {
         printf("Failed to open scoreboard file!\n");
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 3; i++)
         {
             scoreboard->scores[i] = 0;
         }
@@ -164,7 +174,7 @@ void load_scoreboard(Scoreboard* scoreboard)
     }
 
     char buffer[255] = {};
-    for (int record = 0; record < 5; record++)
+    for (int record = 0; record < 3; record++)
     {
         if (fgets(buffer, sizeof(buffer), file))
         {
@@ -186,7 +196,7 @@ void save_scoreboard(const Scoreboard* scoreboard)
     FILE* file = fopen("scoreboard.txt", "w");
     if (file)
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 3; i++)
         {
             fprintf(file, "%d\n", scoreboard->scores[i]);
         }
@@ -198,7 +208,7 @@ void save_scoreboard(const Scoreboard* scoreboard)
 void update_scoreboard(Scoreboard* scoreboard, int score)
 {
     int index = -1;
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 3; i++)
     {
         if (score > scoreboard->scores[i])
         {
@@ -209,7 +219,7 @@ void update_scoreboard(Scoreboard* scoreboard, int score)
 
     if (index >= 0)
     {
-        for (int i = 4; i > index; i--)
+        for (int i = 3; i > index; i--)
         {
             scoreboard->scores[i] = scoreboard->scores[i - 1];
         }
@@ -217,3 +227,79 @@ void update_scoreboard(Scoreboard* scoreboard, int score)
         save_scoreboard(scoreboard);
     }
 }
+
+void gameover_loop(Game* game)
+{
+    SDL_Event event;
+    int selected = 0;
+    const char* options[] = {"Play Again", "Menu", "Quit"};
+    int option_count = 3;
+
+    while (game->running && game->current_screen == SCREEN_GAME_OVER)
+    {
+        while (SDL_PollEvent(&event))
+        {
+            if (event.type == SDL_QUIT)
+            {
+                game->running = 0;
+            }
+            else if (event.type == SDL_KEYDOWN)
+            {
+                switch (event.key.keysym.sym)
+                {
+                case SDLK_UP:
+                    selected = (selected - 1 + option_count) % option_count;
+                    break;
+                case SDLK_DOWN:
+                    selected = (selected + 1) % option_count;
+                    break;
+                case SDLK_RETURN:
+                    if (selected == 0)
+                    {
+                        game_reset(game);
+                        game->current_screen = SCREEN_GAME;
+                    }
+                    else if (selected == 1)
+                    {
+                        game_reset(game);
+                        game->current_screen = SCREEN_MENU;
+                    }
+                    else if (selected == 2)
+                    {
+                        game->running = 0;
+                    }
+                    break;
+                }
+            }
+        }
+
+        SDL_SetRenderDrawColor(game->renderer, 20, 20, 30, 255);
+        SDL_RenderClear(game->renderer);
+        background_render(game->renderer);
+
+        SDL_Color white = {255, 255, 255, 255};
+        SDL_Color gray = {100, 100, 100, 255};
+        SDL_Color red = {255, 80, 80, 255};
+
+        render_text(game->renderer, Font_primary, "Game Over", SCREEN_WIDTH / 2 - 90, 150, red);
+
+        char score_text[32];
+        sprintf(score_text, "Score: %d", game->score);
+        render_text(game->renderer, Font_secondary, score_text, SCREEN_WIDTH / 2 - 50, 220, white);
+
+        char lines_text[32];
+        sprintf(lines_text, "Lines: %d", game->lines_cleared);
+        render_text(game->renderer, Font_secondary, lines_text, SCREEN_WIDTH / 2 - 50, 260, white);
+
+        for (int i = 0; i < option_count; i++)
+        {
+            SDL_Color color = (i == selected) ? white : gray;
+            char text[32];
+            sprintf(text, "%s %s", (i == selected) ? ">" : " ", options[i]);
+            render_text(game->renderer, Font_secondary, text, SCREEN_WIDTH / 2 - 60, 340 + i * 50, color);
+        }
+
+        SDL_RenderPresent(game->renderer);
+    }
+}
+

@@ -18,12 +18,13 @@ int main(void)
             menu_loop(&game);
             break;
         case SCREEN_SETTINGS:
+            settings_loop(&game);
             break;
         case SCREEN_GAME:
             game_loop(&game);
             break;
         case SCREEN_GAME_OVER:
-            // gameover_loop(&game);
+            gameover_loop(&game);
             break;
         default:
             menu_loop(&game);

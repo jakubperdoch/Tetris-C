@@ -25,9 +25,18 @@ int init_audio()
         SDL_LogError(0, "Audio load failed: %s\n", Mix_GetError());
         return -1;
     }
-
-    Mix_PlayMusic(soundtrack, -1);
     return 0;
+}
+
+void play_soundtrack()
+{
+    Mix_PlayMusic(soundtrack, -1);
+}
+
+void stop_soundtrack()
+{
+    printf("Stopping soundtrack\n");
+    Mix_HaltMusic();
 }
 
 void play_gameover()
